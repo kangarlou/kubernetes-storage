@@ -1,0 +1,16 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pv20mb
+spec:
+  capacity:
+    storage: 20Mi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  iscsi:
+    targetPortal: 10.0.207.103:3260
+    iqn: iqn.1992-08.com.netapp:sn.36d2ef9089ac11e6b624080027e5941d:vs.4 
+    lun: 0
+    fsType: 'ext4'
+    readOnly: false

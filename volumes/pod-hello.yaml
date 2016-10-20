@@ -1,0 +1,26 @@
+kind: Pod
+apiVersion: v1
+metadata:
+    name: pod-hello
+spec:
+  containers:
+      - name: ubuntu
+        image: ubuntu
+        command: ["/bin/bash", "-c"]
+        args: ["while true; do echo hi && sleep 1; done"]
+        volumeMounts:
+        - mountPath: "/nginx"
+          name: vol20mb
+        - mountPath: "/root/.bashrc"
+          name: bashrc
+  volumes:
+      - name: vol20mb
+        nfs:
+          server: 10.0.207.101  
+          path: "/vol_20mb_file"
+      - name: bashrc
+        hostPath:
+          path: "/home/ardalan/.bashrc"
+
+        
+

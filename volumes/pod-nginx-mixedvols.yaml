@@ -1,0 +1,22 @@
+kind: Pod
+apiVersion: v1
+metadata:
+    name: pod-nginx
+spec:
+  containers:
+      - name: nginx
+        image: nginx
+        volumeMounts:
+        - mountPath: "/usr/share/nginx/html"
+          name: vol20mb
+        - mountPath: "/scratch"
+          name: scratch
+  volumes:
+      - name: vol20mb
+        nfs:
+          server: 10.0.207.101  
+          path: "/vol_20mb_file"
+      - name: scratch
+        emptyDir: {}
+        
+
