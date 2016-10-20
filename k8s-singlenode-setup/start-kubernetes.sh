@@ -11,7 +11,7 @@ docker run \
     --volume=/var/lib/docker/:/var/lib/docker:rw \
     --volume=/var/lib/kubelet/:/var/lib/kubelet:rw \
     --volume=/var/run:/var/run:rw \
-	--volume=/dev:/dev:rw \
+    --volume=/dev:/dev:rw \
     --net=host \
     --pid=host \
     --privileged=true \
