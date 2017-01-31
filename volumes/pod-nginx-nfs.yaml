@@ -1,18 +1,18 @@
 kind: Pod
 apiVersion: v1
 metadata:
-    name: pod-nginx-nfs
+  name: pod-nginx-nfs
 spec:
   containers:
-      - name: nginx-nfs
-        image: nginx
-        volumeMounts:
-        - mountPath: "/usr/share/nginx/html"
-          name: vol20mb
+    - name: nginx-nfs
+      image: nginx
+      volumeMounts:
+      - mountPath: "/usr/share/nginx/html"
+        name: vol20mb
   volumes:
-      - name: vol20mb
-        nfs:
-          server: 10.0.207.101  
-          path: "/vol_20mb_file"
+    - name: vol20mb
+      nfs:
+        server: 10.0.207.101
+        path: "/trident_vol_20mb_file"
 
 

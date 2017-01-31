@@ -7,7 +7,7 @@ spec:
       - name: ubuntu
         image: ubuntu
         command: ["/bin/bash", "-c"]
-        args: ["while true; do echo hi && sleep 1; done"]
+        args: ["while true; do echo hello && sleep 1; done"]
         volumeMounts:
         - mountPath: "/nginx"
           name: vol20mb
@@ -17,7 +17,7 @@ spec:
       - name: vol20mb
         nfs:
           server: 10.0.207.101  
-          path: "/vol_20mb_file"
+          path: "/trident_vol_20mb_file"
       - name: bashrc
         hostPath:
           path: "/home/ardalan/.bashrc"

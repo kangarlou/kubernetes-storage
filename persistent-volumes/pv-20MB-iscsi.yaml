@@ -10,7 +10,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   iscsi:
     targetPortal: 10.0.207.103:3260
-    iqn: iqn.1992-08.com.netapp:sn.36d2ef9089ac11e6b624080027e5941d:vs.4 
+    iqn: iqn.1992-08.com.netapp:sn.6849b192a50311e6a44108002726d095:vs.4
     lun: 0
     fsType: 'ext4'
     readOnly: false

@@ -1,15 +1,22 @@
-#############################################
+#####################################################
 # Ardalan Kangarlou
 # 
+# Setting up proper bind mounts for service accounts
 # Mounting /dev for iSCSI setup
 # Setting iSCSI service inside Kubelet
-#############################################
+#####################################################
+
+# Following commands need to be run once prior to running this script.
+#sudo mkdir -p /var/lib/kubelet
+#sudo mount --bind /var/lib/kubelet /var/lib/kubelet
+#sudo mount --make-shared /var/lib/kubelet
+
 export K8S_VERSION=$(curl -sS https://storage.googleapis.com/kubernetes-release/release/stable.txt)
 docker run \
     --volume=/:/rootfs:ro \
     --volume=/sys:/sys:ro \
     --volume=/var/lib/docker/:/var/lib/docker:rw \
-    --volume=/var/lib/kubelet/:/var/lib/kubelet:rw \
+    --volume=/var/lib/kubelet/:/var/lib/kubelet:rw,shared \
     --volume=/var/run:/var/run:rw \
 	--volume=/dev:/dev:rw \
     --net=host \
@@ -26,9 +33,9 @@ docker run \
 			--config=/etc/kubernetes/manifests \
 			--allow-privileged=true --v=2
 
+rm kubectl
 wget http://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}/bin/linux/amd64/kubectl
 chmod 755 kubectl
-PATH=$PATH:`pwd`
 
 # Setting up iSCSI service in the kubelet container
 KUBELET=`docker ps --format '{{.ID}} {{.Names}}' | grep kubelet | awk '{print $1}'`
